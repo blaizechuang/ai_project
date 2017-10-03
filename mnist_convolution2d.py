@@ -14,10 +14,14 @@ from keras.layers.core import Flatten
 from keras.layers.convolutional import Convolution2D, MaxPooling2D
 
 import numpy as np
-
+import keras
 
 # Load image data
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
+
+# local predefined data
+log_filePath = 'TensorBoard/'
+
 
 # reshape x to x_train_np, x_test_np
 x_train_np = np.array(x_train)
@@ -55,8 +59,12 @@ model.compile(loss='categorical_crossentropy',
               optimizer='adam',
               metrics=['accuracy'])
 
+# keep log to show on tensorboard
+tb_cb = keras.callbacks.TensorBoard(log_dir=log_filePath, histogram_freq=1)
+cbks = [tb_cb]
+
 model.fit(x_train_np, y_train, 
-          batch_size=32, nb_epoch=10, verbose=1)
+          batch_size=32, nb_epoch=10, verbose=1, callbacks=cbks)
 
 
 print(x_train.shape)
@@ -65,5 +73,6 @@ print(y_train.shape)
 print(x_test.shape)
 print(x_test_np.shape)
 print(y_test.shape)
+print(cbks)
 
 plt.imshow(x_train[10])
