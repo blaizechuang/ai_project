@@ -67,12 +67,11 @@ model.fit(x_train_np, y_train,
           batch_size=32, nb_epoch=10, verbose=1, callbacks=cbks)
 
 
-print(x_train.shape)
-print(x_train_np.shape)
-print(y_train.shape)
-print(x_test.shape)
-print(x_test_np.shape)
-print(y_test.shape)
-print(cbks)
+print('x_train.shape: ' + str(x_train.shape))
+print('x_train_np.shape: ' + str(x_train_np.shape))
+print('y_train.shape: ' + str(y_train.shape))
+print('x_test.shape: ' + str(x_test.shape))
+print('x_test_np.shape: ' + str(x_test_np.shape))
+print('y_test.shape: ' + str(y_test.shape))
 
 plt.imshow(x_train[10])
